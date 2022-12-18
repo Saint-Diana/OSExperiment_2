@@ -32,11 +32,6 @@ public class Disk {
      * @return 磁头走过的总道数
      */
     public int FCFS(int diskHeadPos, ArrayList<Integer> request, ArrayList<Integer> process) {
-        //如果磁头位置不合法
-        if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
-            System.out.println("磁头位置不合法，请重新输入！");
-            return -1;
-        }
         int ret = 0;
         if(!request.contains(diskHeadPos))
             process.add(diskHeadPos);
@@ -60,11 +55,6 @@ public class Disk {
      * @return 磁头走过的总道数
      */
     public int SSTF(int diskHeadPos, ArrayList<Integer> request, ArrayList<Integer> process) {
-        //如果磁头位置不合法
-        if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
-            System.out.println("磁头位置不合法，请重新输入！");
-            return -1;
-        }
         int ret = 0;
         if(!request.contains(diskHeadPos))
             process.add(diskHeadPos);
@@ -87,18 +77,10 @@ public class Disk {
     }
 
     public int SCAN(int diskHeadPos, ArrayList<Integer> request, int direction, ArrayList<Integer> process){
-        //如果磁头位置不合法
-        if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
-            System.out.println("磁头位置不合法，请重新输入！");
-            return -1;
-        }
-        if(direction != -1 && direction != 1){
-            System.out.println("磁头移动方向不合法，请重新输入！");
-            return -1;
-        }
         int ret = 0;
-        if(!request.contains(diskHeadPos))
-            process.add(diskHeadPos);
+        process.add(diskHeadPos);
+        if(request.contains(diskHeadPos))
+            request.remove((Integer) diskHeadPos);
         //首先将request按照值从小到大的升序进行排列
         request.sort(Comparator.naturalOrder());
         //然后进行移动

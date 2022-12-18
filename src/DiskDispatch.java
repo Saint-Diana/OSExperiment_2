@@ -27,56 +27,81 @@ public class DiskDispatch {
                 case 1: {
                     System.out.print("请输入磁头初始位置：");
                     int diskHeadPos = sc.nextInt();
-                    ArrayList<Integer> request = new ArrayList<>();
-                    ArrayList<Integer> process = new ArrayList<>();
-                    init(request);
-                    int result = disk.FCFS(diskHeadPos, request, process);
-                    if(result != -1){
-                        System.out.println("磁头移动的总磁道数：" + result);
-                        System.out.print("走道顺序：");
-                        for(Integer i : process){
-                            System.out.print(i + " ");
+                    //如果磁头位置不合法
+                    if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
+                        System.out.println("磁头位置不合法，请重新输入！");
+                        System.out.println();
+                        System.out.println();
+                    }else{
+                        ArrayList<Integer> request = new ArrayList<>();
+                        ArrayList<Integer> process = new ArrayList<>();
+                        init(request);
+                        int result = disk.FCFS(diskHeadPos, request, process);
+                        if(result != -1){
+                            System.out.println("磁头移动的总磁道数：" + result);
+                            System.out.print("走道顺序：");
+                            for(Integer i : process){
+                                System.out.print(i + " ");
+                            }
+                            System.out.println();
+                            System.out.println();
                         }
-                        System.out.println();
-                        System.out.println();
                     }
                     break;
                 }
                 case 2: {
                     System.out.print("请输入磁头初始位置：");
                     int diskHeadPos = sc.nextInt();
-                    ArrayList<Integer> request = new ArrayList<>();
-                    ArrayList<Integer> process = new ArrayList<>();
-                    init(request);
-                    int result = disk.SSTF(diskHeadPos, request, process);
-                    if(result != -1){
-                        System.out.println("磁头移动的总磁道数：" + result);
-                        System.out.print("走道顺序：");
-                        for(Integer i : process){
-                            System.out.print(i + " ");
+                    if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
+                        System.out.println("磁头位置不合法，请重新输入！");
+                        System.out.println();
+                        System.out.println();
+                    }else {
+                        ArrayList<Integer> request = new ArrayList<>();
+                        ArrayList<Integer> process = new ArrayList<>();
+                        init(request);
+                        int result = disk.SSTF(diskHeadPos, request, process);
+                        if (result != -1) {
+                            System.out.println("磁头移动的总磁道数：" + result);
+                            System.out.print("走道顺序：");
+                            for (Integer i : process) {
+                                System.out.print(i + " ");
+                            }
+                            System.out.println();
+                            System.out.println();
                         }
-                        System.out.println();
-                        System.out.println();
                     }
                     break;
                 }
                 case 3: {
                     System.out.print("请输入磁头初始位置：");
                     int diskHeadPos = sc.nextInt();
-                    ArrayList<Integer> request = new ArrayList<>();
-                    ArrayList<Integer> process = new ArrayList<>();
-                    init(request);
-                    System.out.print("请输入磁头移动方向：");
-                    int direction = sc.nextInt();
-                    int result = disk.SCAN(diskHeadPos, request, direction, process);
-                    if(result != -1){
-                        System.out.println("磁头移动的总磁道数：" + result);
-                        System.out.print("走道顺序：");
-                        for(Integer i : process){
-                            System.out.print(i + " ");
+                    if(diskHeadPos <= 0 || diskHeadPos > diskPathNum){
+                        System.out.println("磁头位置不合法，请重新输入！");
+                        System.out.println();
+                        System.out.println();
+                    }else {
+                        System.out.print("请输入磁头移动方向：");
+                        int direction = sc.nextInt();
+                        if(direction != -1 && direction != 1){
+                            System.out.println("磁头移动方向不合法，请重新输入！");
+                            System.out.println();
+                            System.out.println();
+                        }else {
+                            ArrayList<Integer> request = new ArrayList<>();
+                            ArrayList<Integer> process = new ArrayList<>();
+                            init(request);
+                            int result = disk.SCAN(diskHeadPos, request, direction, process);
+                            if (result != -1) {
+                                System.out.println("磁头移动的总磁道数：" + result);
+                                System.out.print("走道顺序：");
+                                for (Integer i : process) {
+                                    System.out.print(i + " ");
+                                }
+                                System.out.println();
+                                System.out.println();
+                            }
                         }
-                        System.out.println();
-                        System.out.println();
                     }
                     break;
                 }
